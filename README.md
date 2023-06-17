@@ -1,28 +1,27 @@
-# EJADA E-Invoice Middleware
+# Clean Architecture Template for .NET Core 7
 
-E-Invoice Middleware is a system that enables integration with SAP, POS Systems, and RMS to get invoices, debit notes, or credit notes and send them to the Invoice Portal (ZATCA or Egyptian invoice portal). It also includes APIs that allow customers to integrate with it and send invoices, debit notes, or credit notes or retrieve them.
+This is a template project for .NET Core 7 using Clean Architecture principles. It provides a starting point for building your own .NET Core 7 applications using the Clean Architecture pattern.
 
 ## Technologies
 
-- .NET Core 6
-- Angular 14
-- SQL Server
-- Entity Framework Core
+This template uses the following technologies:
+
+- .NET Core 7
+- Entity Framework Core 6
 - MediatR
 - AutoMapper
+- Fluent Validation
+- Serilog
 - Swagger
 
-## Features
-
-- Integration with SAP, POS Systems, and RMS
-- Send invoices, debit notes, or credit notes to the Invoice Portal
-- APIs for customers to send or retrieve invoices, debit notes, or credit notes
-- Authentication and Authorization
-- Audit trail logging
-- Exception handling and error reporting
-- Swagger API documentation
-
 ## Getting Started
+
+To get started with this template, follow these steps:
+
+1- Clone the repository to your local machine.
+2- Open the solution file (CleanArchitectureTemplate.sln) in Visual Studio or another compatible IDE.
+3- Run the application using the debugger or by pressing F5.
+4- The application should launch in your default web browser to view the Swagger UI.
 
 ### Prerequisites
 
@@ -30,15 +29,11 @@ E-Invoice Middleware is a system that enables integration with SAP, POS Systems,
 - Node.js and npm
 - SQL Server
 
-## Usage
+## Project Structure
 
-The application consists of two main parts: the server-side API and the client-side web application. The server-side API provides endpoints for sending and retrieving invoices, debit notes, and credit notes. The client-side web application provides a user interface for interacting with the API.
+This template follows the Clean Architecture pattern, which promotes separation of concerns and testability. The project is structured as follows:
 
-### Server-side API
-
-The server-side API is built using .NET Core 6 and exposes RESTful endpoints for sending and retrieving invoices, debit notes, and credit notes. The API is secured using authentication and authorization. Swagger is used for API documentation.
-
-### Client-side Web Application
-
-The client-side web application is built using Angular 14 and provides a user interface for interacting with the server-side API. The web application includes forms for sending invoices, debit notes, and credit notes and tables for retrieving them.
-
+- Api: This project contains the API controllers and the Swagger configuration.
+- Application: This project contains the application logic, including commands, queries, and handlers.
+- Domain: This project contains the domain models and interfaces.
+- Infrastructure: This project contains the implementation of the interfaces defined in the domain layer, including database context, repositories, and other services.
