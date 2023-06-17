@@ -18,10 +18,10 @@ This template uses the following technologies:
 
 To get started with this template, follow these steps:
 
-1- Clone the repository to your local machine.
-2- Open the solution file (CleanArchitectureTemplate.sln) in Visual Studio or another compatible IDE.
-3- Run the application using the debugger or by pressing F5.
-4- The application should launch in your default web browser to view the Swagger UI.
+1. Clone the repository to your local machine.
+2. Open the solution file (CleanArchitectureTemplate.sln) in Visual Studio or another compatible IDE.
+3. Run the application using the debugger or by pressing F5.
+4. The application should launch in your default web browser to view the Swagger UI.
 
 ## Project Structure
 
