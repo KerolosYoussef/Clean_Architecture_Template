@@ -23,12 +23,6 @@ To get started with this template, follow these steps:
 3- Run the application using the debugger or by pressing F5.
 4- The application should launch in your default web browser to view the Swagger UI.
 
-### Prerequisites
-
-- .NET Core 6 SDK
-- Node.js and npm
-- SQL Server
-
 ## Project Structure
 
 This template follows the Clean Architecture pattern, which promotes separation of concerns and testability. The project is structured as follows:
