@@ -33,9 +33,19 @@ namespace Infrastructure
         public static IServiceCollection AddPresistance(this IServiceCollection services, ConfigurationManager configurationManager)
         {
             var connectionString = configurationManager.GetConnectionString("DefaultConnection");
+            
+            // Add database
             services.AddDbContext<ApplicationDbContext>(option 
                 => option.UseSqlServer(connectionString));
 
+            // Add redis
+            services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = configurationManager.GetConnectionString("Redis");
+                options.InstanceName = "Demo_";
+            });
+
+            // Add Presistance services 
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient(typeof(IBaseRepositoryAsync<>), typeof(BaseRepositoryAsync<>));

@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace API.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     [Authorize]
     public class ApiController : ControllerBase
     {

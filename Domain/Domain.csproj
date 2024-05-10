@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <Folder Include="Common\Enums\" />
-    <Folder Include="Common\Helpers\" />
+    <Folder Include="Common\Params\" />
   </ItemGroup>
 
 </Project>

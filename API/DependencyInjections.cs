@@ -2,6 +2,7 @@
 using API.Common.Mapping;
 using Microsoft.AspNetCore.Authentication.Negotiate;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.OpenApi.Models;
 
 namespace API
 {
@@ -12,8 +13,34 @@ namespace API
             services.AddTransient<ProblemDetailsFactory, ExtendedProblemDetailsFactory>();
             services.AddControllers();
             services.AddEndpointsApiExplorer()
-               .AddSwaggerGen()
+               .AddSwaggerGen(s =>
+               {
+                   s.AddSecurityDefinition("bearer", new OpenApiSecurityScheme
+                   {
+                       In = ParameterLocation.Header,
+                       Description = "Bearer Authentication using bearer scheme",
+                       Name = "Authorization",
+                       Type = SecuritySchemeType.Http,
+                       BearerFormat = "JWT",
+                       Scheme = "bearer"
+                   });
+                   s.AddSecurityRequirement(new OpenApiSecurityRequirement
+                   {
+                       {
+                           new OpenApiSecurityScheme
+                           {
+                               Reference = new OpenApiReference
+                               {
+                                   Type = ReferenceType.SecurityScheme,
+                                   Id = "bearer"
+                               }
+                           },
+                           new string[]{}
+                       }
+                   });
+               })
                .AddMapping()
+               .AddRouting(options => options.LowercaseUrls = true)
                .AddAuthentication(NegotiateDefaults.AuthenticationScheme)
                .AddNegotiate();
             services.AddAuthorization(options =>
