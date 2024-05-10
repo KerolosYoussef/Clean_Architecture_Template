@@ -2,6 +2,7 @@
 using Application.Common.Interfaces.Presistance;
 using Domain.UserAggregate;
 using Infrastructure.Authentication;
+using Infrastructure.Extensions;
 using Infrastructure.Presistence;
 using Infrastructure.Presistence.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -33,10 +34,9 @@ namespace Infrastructure
         public static IServiceCollection AddPresistance(this IServiceCollection services, ConfigurationManager configurationManager)
         {
             var connectionString = configurationManager.GetConnectionString("DefaultConnection");
-            
+
             // Add database
-            services.AddDbContext<ApplicationDbContext>(option 
-                => option.UseSqlServer(connectionString));
+            services.AddDatabase();
 
             // Add redis
             services.AddStackExchangeRedisCache(options =>
