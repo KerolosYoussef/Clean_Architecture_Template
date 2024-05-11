@@ -1,13 +1,13 @@
-# Clean Architecture Template for .NET Core 7
+# Clean Architecture Template for .NET Core 8
 
-This is a template project for .NET Core 7 using Clean Architecture principles. It provides a starting point for building your own .NET Core 7 applications using the Clean Architecture pattern.
+This is a template project for .NET Core 8 using Clean Architecture principles. It provides a starting point for building your own .NET Core 8 applications using the Clean Architecture pattern.
 
 ## Technologies
 
 This template uses the following technologies:
 
-- .NET Core 7
-- Entity Framework Core 6
+- .NET Core 8
+- Entity Framework Core 8
 - MediatR
 - AutoMapper
 - Fluent Validation
