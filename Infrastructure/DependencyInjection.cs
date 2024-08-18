@@ -33,10 +33,11 @@ namespace Infrastructure
 
         public static IServiceCollection AddPresistance(this IServiceCollection services, ConfigurationManager configurationManager)
         {
+            // Get data from appsettings
             var connectionString = configurationManager.GetConnectionString("DefaultConnection");
-
+            var databaseProviderType = configurationManager.GetConnectionString("DatabaseProvider");
             // Add database
-            services.AddDatabase();
+            services.AddDatabase(connectionString, databaseProviderType);
 
             // Add redis
             services.AddStackExchangeRedisCache(options =>

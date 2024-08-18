@@ -13,28 +13,18 @@ namespace Infrastructure.Extensions
 {
     public static class AddDatabaseExtension
     {
-        public static IServiceCollection AddDatabase(this IServiceCollection services)
+        public static IServiceCollection AddDatabase(this IServiceCollection services, string connectionString, string databaseType)
         {
             // get database connection string and provider
-            var connectionString = Environment.GetEnvironmentVariable("ConnectionString");
-            var databaseProviderType = Enum.Parse<DatabaseProvider>(Environment.GetEnvironmentVariable("databaseProviderType"));
-            IDatabase databaseProvider;
+            var databaseProviderType = Enum.Parse<DatabaseProvider>(databaseType);
+
             // instantiate the correct database provider
-            switch (databaseProviderType)
+            IDatabase databaseProvider = databaseProviderType switch
             {
-                case DatabaseProvider.Mysql:
-                    {
-                        databaseProvider = new MySqlDatabaseProvider();
-                        break;
-                    }
-                case DatabaseProvider.Mssql:
-                    {
-                        databaseProvider = new MssqlDatabaseProvider();
-                        break;
-                    }
-                default:
-                    throw new ArgumentException("Invalid database provider type");
-            }
+                DatabaseProvider.Mysql => new MySqlDatabaseProvider(),
+                DatabaseProvider.Mssql => new MssqlDatabaseProvider(),
+                _ => throw new ArgumentException("Invalid database provider type")
+            };
 
             // connect to database
             databaseProvider.ConnectToDatabase(services, connectionString);
