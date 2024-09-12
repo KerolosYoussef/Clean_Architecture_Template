@@ -25,5 +25,12 @@ namespace Application.Speicifications
         {
             return new BaseSpecification<Permission>(x => x.Id == PermissionId.Create(id));
         }
+
+        public static BaseSpecification<Permission> GetModulePermissionSpec(string module)
+        {
+            return new BaseSpecification<Permission>(x 
+                => x.Module == module
+            );
+        }
     }
 }

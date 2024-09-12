@@ -1,16 +1,16 @@
 ﻿using Application.Common;
+using Application.Common.DTOs;
 using Application.Permissions.Commands.CreatePermission;
 using Application.Permissions.Commands.DeletePermission;
 using Application.Permissions.Commands.EditPermission;
 using Application.Permissions.Queries.GetAllPermissions;
+using Application.Permissions.Queries.GetRolePermissions;
 using Application.Permissions.Queries.GetSinglePermission;
 using Application.Speicifications;
 using Contracts.Permission;
-using Domain.PermissionAggregate;
 using Mapster;
 using MapsterMapper;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -48,13 +48,32 @@ namespace API.Controllers
         {
             // Initialize single permission specification
             var getSinglePermissionSpec = PermissionSpecifications.GetPermissionByIdSpec(id);
+
             // create new query with this specification
             var query = new GetSinglePermissionQuery(getSinglePermissionSpec);
+
             // apply query handler
             var response = await _mediator.Send(query);
+
             // return response
             return response.Match(
                 result => Ok(result.Adapt<PermissionResponse>()),
+                Problem
+            );
+        }
+
+        [HttpGet("role/{id}")]
+        public async Task<IActionResult> GetPermissionsByRoleIdAsync(string id)
+        {
+            // create new query with this specification
+            var query = new GetRolePermissionsQuery(id);
+
+            // apply query handler
+            var response = await _mediator.Send(query);
+
+            // return response
+            return response.Match(
+                result => Ok(result.Adapt<PermissionsDto>()),
                 Problem
             );
         }

@@ -8,5 +8,6 @@ namespace Domain.Common.Errors
             code: "Permissions.NotFound",
             description: "Permission Not Found" 
         );
+
     }
 }
